@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://gcfrbdlwb6xn"]
+
+[ext_resource type="Script" uid="uid://ciue2ve7bstxo" path="res://assets/scripts/gameplay.gd" id="1_1pg7n"]
+[ext_resource type="PackedScene" uid="uid://dn7ulf1icyvue" path="res://assets/scenes/background.tscn" id="1_un4qs"]
+[ext_resource type="PackedScene" uid="uid://cftmr7b676flb" path="res://assets/scenes/hud.tscn" id="2_mrbpc"]
+[ext_resource type="Shader" uid="uid://clkja0tymhhyd" path="res://assets/shaders/vignette.gdshader" id="4_0hf1u"]
+[ext_resource type="PackedScene" uid="uid://cmnda8bwxyppk" path="res://assets/scenes/player.tscn" id="4_17b01"]
+[ext_resource type="Shader" uid="uid://bk5ek2wep24l7" path="res://assets/shaders/camera_shake.gdshader" id="4_fw4li"]
+[ext_resource type="Script" uid="uid://c3i8c0y2g4gnu" path="res://assets/scripts/camera_shake.gd" id="5_fw4li"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqp6g"]
+shader = ExtResource("4_fw4li")
+shader_parameter/shake_strength = 0.0
+shader_parameter/FactorA = Vector2(100, 100)
+shader_parameter/FactorB = Vector2(1, 1)
+shader_parameter/magnitude = Vector2(0.01, 0.01)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw4li"]
+shader = ExtResource("4_0hf1u")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.5
+shader_parameter/outer_radius = 1.5
+
+[node name="Gameplay" type="Node2D" unique_id=408388480 node_paths=PackedStringArray("hud", "player", "vignette_shader", "camera_shake_shader")]
+script = ExtResource("1_1pg7n")
+hud = NodePath("CanvasLayer/HUD")
+player = NodePath("Player")
+vignette_shader = NodePath("ShaderLayer/Vignette")
+camera_shake_shader = NodePath("ShaderLayer/CameraShake")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=228102150]
+layer = -100
+
+[node name="Background" parent="BackgroundLayer" unique_id=865775040 instance=ExtResource("1_un4qs")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1548275805]
+layer = 1000
+
+[node name="HUD" parent="CanvasLayer" unique_id=1740360910 instance=ExtResource("2_mrbpc")]
+
+[node name="ShaderLayer" type="CanvasLayer" parent="." unique_id=1871256019]
+layer = 100
+
+[node name="CameraShake" type="ColorRect" parent="ShaderLayer" unique_id=1256669472]
+material = SubResource("ShaderMaterial_kqp6g")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_fw4li")
+
+[node name="Vignette" type="ColorRect" parent="ShaderLayer" unique_id=1587667495]
+material = SubResource("ShaderMaterial_fw4li")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Player" parent="." unique_id=1978926702 instance=ExtResource("4_17b01")]
+z_index = 1
+position = Vector2(0, -100)
+jump_speed = 300.0
+
+[node name="Level" type="Node2D" parent="." unique_id=1312891074]

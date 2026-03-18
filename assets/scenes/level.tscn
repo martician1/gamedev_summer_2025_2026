@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://ifdwqyplef1e"]
+
+[ext_resource type="PackedScene" uid="uid://hv2f3pb34do6" path="res://assets/scenes/solid_platform.tscn" id="1_8sdpe"]
+[ext_resource type="Script" uid="uid://dhnxfrtcyfkpo" path="res://assets/scripts/level.gd" id="1_tjd8y"]
+[ext_resource type="PackedScene" uid="uid://t66xpc810rid" path="res://assets/scenes/moving_platform.tscn" id="2_tjd8y"]
+[ext_resource type="PackedScene" uid="uid://dgm606o4fqcdu" path="res://assets/scenes/jump_pad.tscn" id="4_lka7q"]
+[ext_resource type="PackedScene" uid="uid://bm5nbbau5lsp4" path="res://assets/scenes/dropping_platform.tscn" id="5_68jgb"]
+[ext_resource type="PackedScene" uid="uid://bt0maeacuacm4" path="res://assets/scenes/exit_door.tscn" id="6_8sdpe"]
+[ext_resource type="PackedScene" uid="uid://bs6pa4sya3ixt" path="res://assets/scenes/key.tscn" id="6_nwww1"]
+[ext_resource type="PackedScene" uid="uid://dfkgyvfd4rgy2" path="res://assets/scenes/enemy.tscn" id="7_tjd8y"]
+
+[sub_resource type="Curve2D" id="Curve2D_0kt67"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -119.999985, -23.333282, 0, 0, 0, 0, 206.66669, 135.00003)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_lka7q"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240)
+}
+point_count = 2
+
+[node name="Level" type="Node2D" unique_id=1939610847 node_paths=PackedStringArray("spawn_point") groups=["levels"]]
+script = ExtResource("1_tjd8y")
+min_height = -300.0
+spawn_point = NodePath("SpawnPoint")
+
+[node name="SolidPlatforms" type="Node2D" parent="." unique_id=1678411432]
+
+[node name="SolidPlatform" parent="SolidPlatforms" unique_id=1910919353 instance=ExtResource("1_8sdpe")]
+
+[node name="SolidPlatform2" parent="SolidPlatforms" unique_id=1831457305 instance=ExtResource("1_8sdpe")]
+position = Vector2(455, -157)
+
+[node name="SolidPlatform8" parent="SolidPlatforms" unique_id=1403644823 instance=ExtResource("1_8sdpe")]
+position = Vector2(140, 145)
+
+[node name="SolidPlatform7" parent="SolidPlatforms" unique_id=2137944972 instance=ExtResource("1_8sdpe")]
+position = Vector2(140, 1)
+
+[node name="SolidPlatform3" parent="SolidPlatforms" unique_id=279987367 instance=ExtResource("1_8sdpe")]
+position = Vector2(-232, 0)
+
+[node name="SolidPlatform4" parent="SolidPlatforms" unique_id=595294917 instance=ExtResource("1_8sdpe")]
+position = Vector2(380, -1)
+
+[node name="SolidPlatform5" parent="SolidPlatforms" unique_id=1696411224 instance=ExtResource("1_8sdpe")]
+position = Vector2(1, -180)
+
+[node name="Keys" type="Node2D" parent="." unique_id=1807544427]
+
+[node name="Key" parent="Keys" unique_id=1412706677 instance=ExtResource("6_nwww1")]
+position = Vector2(141, 57)
+
+[node name="Key2" parent="Keys" unique_id=2138431317 instance=ExtResource("6_nwww1")]
+position = Vector2(-257, -15)
+
+[node name="Key3" parent="Keys" unique_id=1912344660 instance=ExtResource("6_nwww1")]
+position = Vector2(21, -196)
+
+[node name="MovingPlatforms" type="Node2D" parent="." unique_id=1826011857]
+
+[node name="MovingPlatform" parent="MovingPlatforms" unique_id=1450378940 instance=ExtResource("2_tjd8y")]
+position = Vector2(197, -240.00002)
+curve = SubResource("Curve2D_0kt67")
+path_time = 3.5
+
+[node name="MovingPlatform2" parent="MovingPlatforms" unique_id=1219367687 instance=ExtResource("2_tjd8y")]
+position = Vector2(259, 0)
+curve = SubResource("Curve2D_lka7q")
+path_time = 2.0
+
+[node name="DroppingPlatforms" type="Node2D" parent="." unique_id=501081586]
+
+[node name="DroppingPlatform" parent="DroppingPlatforms" unique_id=1238429140 instance=ExtResource("5_68jgb")]
+position = Vector2(140, 75)
+
+[node name="DroppingPlatform2" parent="DroppingPlatforms" unique_id=1515456618 instance=ExtResource("5_68jgb")]
+position = Vector2(-113.00001, -64)
+
+[node name="JumpPads" type="Node2D" parent="." unique_id=1650938093]
+
+[node name="JumpPad" parent="JumpPads" unique_id=1845969811 instance=ExtResource("4_lka7q")]
+position = Vector2(-209, -13)
+
+[node name="JumpPad2" parent="JumpPads" unique_id=1547837584 instance=ExtResource("4_lka7q")]
+position = Vector2(402, -14)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1729119691]
+
+[node name="Enemy" parent="Enemies" unique_id=1596166333 instance=ExtResource("7_tjd8y")]
+position = Vector2(140, 125)
+
+[node name="Enemy2" parent="Enemies" unique_id=800508820 instance=ExtResource("7_tjd8y")]
+position = Vector2(-2, -200)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=268367540]
+position = Vector2(0, -42)
+
+[node name="ExitDoor" parent="." unique_id=988073786 instance=ExtResource("6_8sdpe")]
+position = Vector2(473, -186)

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bm5nbbau5lsp4"]
+
+[ext_resource type="Script" uid="uid://dgnmew6l2x04m" path="res://assets/scripts/dropping_platform.gd" id="1_t6wul"]
+[ext_resource type="Texture2D" uid="uid://ddxlfowg31css" path="res://assets/sprites/environment/PlatformLarge.png" id="1_xo18e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6wul"]
+size = Vector2(113.33333, 24.999998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1ec7"]
+size = Vector2(113.33333, 5.000001)
+
+[node name="DroppingPlatform" type="StaticBody2D" unique_id=1238429140 node_paths=PackedStringArray("platform_collision_shape", "area_collision_shape", "pivot", "sprite")]
+scale = Vector2(0.6, 0.6)
+collision_layer = 256
+collision_mask = 3
+script = ExtResource("1_t6wul")
+platform_collision_shape = NodePath("CollisionShape2D")
+area_collision_shape = NodePath("Area2D/CollisionShape2D")
+pivot = NodePath("Marker2D")
+sprite = NodePath("Marker2D/Sprite2D")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=735116374]
+position = Vector2(-56.666664, -13.333333)
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D" unique_id=542034663]
+position = Vector2(56.666656, 13.333333)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_xo18e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1723827504]
+position = Vector2(7.947286e-07, -0.8333336)
+shape = SubResource("RectangleShape2D_t6wul")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2142545581]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=252551474 groups=["platforms"]]
+position = Vector2(0, -13.333333)
+shape = SubResource("RectangleShape2D_n1ec7")
+debug_color = Color(0.83577204, 0.32681033, 0.5477162, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

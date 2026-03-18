@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://dfkgyvfd4rgy2"]
+
+[ext_resource type="Texture2D" uid="uid://b1jwvkrk5o317" path="res://assets/sprites/enemies/EnemyIdle.png" id="1_l4rmu"]
+[ext_resource type="Script" uid="uid://bwx7ynn2st3uq" path="res://assets/scripts/enemy.gd" id="1_ovi8q"]
+[ext_resource type="Texture2D" uid="uid://c7t0pfwqfqpw4" path="res://assets/sprites/enemies/EnemyJump.png" id="2_ovi8q"]
+[ext_resource type="Texture2D" uid="uid://b2dlxmo2agcgo" path="res://assets/sprites/enemies/EnemyWalk1.png" id="3_t2q6g"]
+[ext_resource type="Texture2D" uid="uid://de4jng8451wku" path="res://assets/sprites/enemies/EnemyWalk2.png" id="4_o3hxu"]
+[ext_resource type="Script" uid="uid://ciyiyy36qeb3l" path="res://assets/scripts/enemy_animator.gd" id="6_t2q6g"]
+[ext_resource type="Texture2D" uid="uid://bvqyox57wcygh" path="res://assets/sprites/particle_circle.png" id="7_o3hxu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yyvcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l4rmu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ovi8q")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t2q6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o3hxu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4t03u"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_o3hxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t2q6g"]
+resource_name = "die"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o3hxu"]
+_data = {
+&"RESET": SubResource("Animation_o3hxu"),
+&"die": SubResource("Animation_t2q6g")
+}
+
+[sub_resource type="Gradient" id="Gradient_o3hxu"]
+offsets = PackedFloat32Array(0, 0.91588783, 1)
+colors = PackedColorArray(0.8, 0.101960786, 0.101960786, 1, 0.5054792, 0.00857614, 0.00857614, 1, 0.47843137, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yyvcd"]
+gradient = SubResource("Gradient_o3hxu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yyvcd"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 3, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 120.0
+initial_velocity_min = 30.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 30, 0)
+damping_min = 40.0
+damping_max = 90.00001
+scale_min = 0.099999994
+scale_max = 0.19999999
+color_ramp = SubResource("GradientTexture1D_yyvcd")
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1596166333 node_paths=PackedStringArray("particles") groups=["enemies"]]
+collision_layer = 2
+collision_mask = 257
+script = ExtResource("1_ovi8q")
+particles = NodePath("GPUParticles2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342846578 node_paths=PackedStringArray("enemy", "effect_animator")]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_yyvcd")
+animation = &"idle"
+script = ExtResource("6_t2q6g")
+enemy = NodePath("..")
+effect_animator = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=811928992]
+shape = SubResource("CapsuleShape2D_4t03u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=131610163]
+libraries/ = SubResource("AnimationLibrary_o3hxu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=127030006]
+emitting = false
+amount = 12
+texture = ExtResource("7_o3hxu")
+lifetime = 0.45
+one_shot = true
+explosiveness = 0.95
+randomness = 0.15
+process_material = SubResource("ParticleProcessMaterial_yyvcd")

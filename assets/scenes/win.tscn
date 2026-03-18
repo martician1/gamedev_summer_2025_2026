@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bbdrb4hwij1wq"]
+
+[ext_resource type="Theme" uid="uid://cy2gwmif84ory" path="res://assets/themes/main_menu.tres" id="1_oym2x"]
+[ext_resource type="Script" uid="uid://du70yncvqjitq" path="res://assets/scripts/win.gd" id="2_jbjup"]
+[ext_resource type="PackedScene" uid="uid://dn7ulf1icyvue" path="res://assets/scenes/background.tscn" id="2_so7i1"]
+
+[node name="Win" type="Control" unique_id=1877366844]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oym2x")
+script = ExtResource("2_jbjup")
+
+[node name="Background" parent="." unique_id=865775040 instance=ExtResource("2_so7i1")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1319378772]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.5
+offset_top = -40.5
+offset_right = 167.5
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94509804, 0.6117647, 0.7176471, 1)
+theme_override_font_sizes/font_size = 128
+text = "You Win!"

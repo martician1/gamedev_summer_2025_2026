@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://hv2f3pb34do6"]
+
+[ext_resource type="Script" uid="uid://b0dhsd55uljjd" path="res://assets/scripts/solid_platform.gd" id="1_tenn8"]
+[ext_resource type="Texture2D" uid="uid://ddxlfowg31css" path="res://assets/sprites/environment/PlatformLarge.png" id="1_wvpd5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvpd5"]
+size = Vector2(113.33333, 24.999998)
+
+[node name="SolidPlatform" type="StaticBody2D" unique_id=1910919353 groups=["platforms"]]
+scale = Vector2(0.6, 0.6)
+collision_layer = 256
+collision_mask = 3
+script = ExtResource("1_tenn8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1050786609]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_wvpd5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479684018]
+position = Vector2(-2.9802322e-07, -0.8333335)
+shape = SubResource("RectangleShape2D_wvpd5")

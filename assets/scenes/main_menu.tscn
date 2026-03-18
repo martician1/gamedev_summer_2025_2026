@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://drvqtjtmbfq10"]
+
+[ext_resource type="Script" uid="uid://dnw1kw1scdiel" path="res://assets/scripts/main_menu.gd" id="1_uu6ob"]
+[ext_resource type="Theme" uid="uid://cy2gwmif84ory" path="res://assets/themes/main_menu.tres" id="1_v1ppo"]
+[ext_resource type="PackedScene" uid="uid://dn7ulf1icyvue" path="res://assets/scenes/background.tscn" id="3_f2xsc"]
+[ext_resource type="Texture2D" uid="uid://b558h5obb7neh" path="res://assets/sprites/player/PlayerIdle.png" id="4_v71do"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2xsc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v71do"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmmar"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66en2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ej4af"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp4c4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57ux2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uek13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fntub"]
+
+[node name="MainMenu" type="Control" unique_id=86680597]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v1ppo")
+script = ExtResource("1_uu6ob")
+
+[node name="Background" parent="." unique_id=865775040 instance=ExtResource("3_f2xsc")]
+layout_mode = 1
+
+[node name="PlayerSprite" type="TextureRect" parent="Background" unique_id=1626067638]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16700001
+anchor_top = 0.61300004
+anchor_right = 0.224
+anchor_bottom = 0.75500005
+offset_left = -0.38401794
+offset_top = -0.22402954
+offset_right = -0.04800415
+offset_bottom = -0.24002075
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_v71do")
+expand_mode = 1
+
+[node name="Play" type="Button" parent="." unique_id=857700043]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -158.0
+offset_right = 89.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94509804, 0.6117647, 0.7176471, 1)
+theme_override_colors/font_pressed_color = Color(0.5176471, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_hover_color = Color(0.94509804, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_outline_color = Color(0.38431373, 0.4627451, 0.5019608, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f2xsc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v71do")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xmmar")
+text = "Play"
+
+[node name="Options" type="Button" parent="." unique_id=993127824]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -13.0
+offset_right = 40.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94509804, 0.6117647, 0.7176471, 1)
+theme_override_colors/font_pressed_color = Color(0.5176471, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_hover_color = Color(0.94509804, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_outline_color = Color(0.38431373, 0.4627451, 0.5019608, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_66en2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ej4af")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tp4c4")
+text = "Options"
+
+[node name="Quit" type="Button" parent="." unique_id=1071939124]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 202.0
+offset_right = 74.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94509804, 0.6117647, 0.7176471, 1)
+theme_override_colors/font_pressed_color = Color(0.5176471, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_hover_color = Color(0.94509804, 0.47058824, 0.7176471, 1)
+theme_override_colors/font_outline_color = Color(0.38431373, 0.4627451, 0.5019608, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_57ux2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uek13")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fntub")
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

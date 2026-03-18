@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cftmr7b676flb"]
+
+[ext_resource type="Script" uid="uid://oal0wo3g2e1x" path="res://assets/scripts/hud.gd" id="1_h1vs0"]
+[ext_resource type="Texture2D" uid="uid://borrfi32v5wek" path="res://assets/sprites/hud/HudHeartFull.png" id="1_tdpgl"]
+[ext_resource type="Texture2D" uid="uid://c1n7g4dhkw2we" path="res://assets/sprites/hud/HudKeyFull.png" id="2_3bobg"]
+[ext_resource type="Texture2D" uid="uid://bqcigttn37pon" path="res://assets/sprites/hud/HudHeartEmpty.png" id="3_tjl0v"]
+[ext_resource type="Texture2D" uid="uid://bn7espkj6rjxa" path="res://assets/sprites/hud/HudKeyEmpty.png" id="4_a5g2a"]
+
+[node name="HUD" type="Control" unique_id=1740360910 node_paths=PackedStringArray("hearts", "keys")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h1vs0")
+hearts = NodePath("Hearts")
+heart_full = ExtResource("1_tdpgl")
+heart_empty = ExtResource("3_tjl0v")
+max_hearts = 3
+current_hearts = 3
+keys = NodePath("Keys")
+key_full = ExtResource("2_3bobg")
+key_empty = ExtResource("4_a5g2a")
+max_keys = 3
+
+[node name="Hearts" type="HBoxContainer" parent="." unique_id=155568914]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.19800001
+offset_bottom = -0.3040161
+
+[node name="Keys" type="HBoxContainer" parent="." unique_id=1011378282]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.19800001
+offset_bottom = -0.3040161
+grow_horizontal = 0
