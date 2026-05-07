@@ -1,0 +1,3 @@
+[submodule "mountains_of_madness"]
+	path = mountains_of_madness
+	url = git@github.com:martician1/mountains_of_madness.git
